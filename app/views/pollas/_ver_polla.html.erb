@@ -1,0 +1,138 @@
+			<div class="col-md-12">
+				<div class="widget worange">       
+					<div class="widget-head">
+		                    <div class="pull-left">Primera Ronda</div>
+		                    <div class="widget-icons pull-right">
+		                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+		                    </div>
+		                    <div class="clearfix"></div>
+					</div>
+		   			<div class="widget-content">
+		  				
+	                      <% Group.all.each do |g| %>
+  	                    <table class="table table-condensed table-striped">
+  	                      <thead>
+						  <tr class="info">
+						  	<th class="info" colspan= <%=g.matches.count%>><%= "Grupo #{g.name}"%></th>
+						  </tr>
+						  <tr>
+						  <% g.matches.each do |match| %>
+						     <th class="bold"><%= "#{match.teams.collect(&:name).join(" vs ")}"%></th>
+						  <%end%>
+					  	  </tr>
+					  </thead>
+					  <tbody>
+							<tr>
+							<% @polla.match_results.joins(:match).where(matches: {group_id: g.id}).each do |result| %>
+							<td><%= result.winner.nil? && result.draw.nil? ? " " : result.winner.nil? ? "Empate" : "#{result.team.name}"%></td>
+							<%end%>
+						</tr>
+							</tbody>
+						</table>
+						<%end%>						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="widget wblue">       
+					<div class="widget-head">
+		                    <div class="pull-left">Posiciones</div>
+		                    <div class="widget-icons pull-right">
+		                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+		                    </div>
+		                    <div class="clearfix"></div>
+					</div>
+		   			<div class="widget-content">
+  	                   <table class="table table-condensed table-striped">
+  	                      <thead>
+						  <tr class="bold">
+						  	<th class="bold">Grupo</th>
+							<th class="bold">Primero</th>
+							<th class="bold">Segundo</th>
+							<th class="bold">Tercero</th>
+							<th class="bold">Cuarto</th>
+						  </tr>						
+						</thead>
+						<tbody>
+	                      <% Group.order(:id).each do |g| %>
+  	                    <tr>
+							<td class="bold"><%= "Grupo #{g.name}"%></td>
+							<% Position.order(:id).each do |p| %>
+							<td><%= @polla.group_positions.where('group_id = ? AND position_id = ?', g.id, p.id).try(:first).try(:team).try(:name)%></td>
+							<%end%>
+						</tr>
+						<%end%>
+						</tbody>
+					</table>
+		
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="widget wblue">       
+					<div class="widget-head">
+		                    <div class="pull-left">Clasificados</div>
+		                    <div class="widget-icons pull-right">
+		                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+		                    </div>
+		                    <div class="clearfix"></div>
+					</div>
+		   			<div class="widget-content">
+  	                   <% Round.order(:id).each do |r| %>
+                   	<table class="table table-condensed table-striped table-bordered">
+                      	<thead>
+						  <tr class="bold">
+						  	<th colspan="4" class="bold"><%= "#{r.name}"%></th>
+						   </tr>						
+						</thead>
+						<tbody>
+						<%@polla.qualifieds.where(round_id: r.id).order(:updated_at).each_with_index do |q, i| %>
+						<%if i % 4 == 0%><tr><%end%>
+							<td><%= q.try(:team).try(:name)%></td>
+						<%if i + 1 % 4 == 0%></tr><%end%>
+						<%end%>
+						<%end%>
+						</tbody>
+					</table>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			<div class="col-md-12">
+				<div class="widget wviolet">       
+					<div class="widget-head">
+		                    <div class="pull-left">Posiciones Finales</div>
+		                    <div class="widget-icons pull-right">
+		                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+		                    </div>
+		                    <div class="clearfix"></div>
+					</div>
+		   			<div class="widget-content">
+                     	<table class="table table-condensed table-striped">
+                        	<thead>
+					  		  <tr class="bold">
+					  			<th class="bold">Campeón</th>
+								<th class="bold">Subcampeón</th>
+								<th class="bold">Tercero</th>
+								<th class="bold">Cuarto</th>
+					   		</tr>
+							</thead>
+							<tbody>
+					   <tr>
+					   <% Position.order(:id).each do |p| %>			
+							<td>
+								<%=@polla.final_positions.where(position_id: p.id).try(:first).try(:team).try(:name) %>
+							</td>					
+						<%end%>
+					</tr>
+						</tbody>
+					</table>
+		
+					</div>
+				</div>
+			</div>
+			
+				

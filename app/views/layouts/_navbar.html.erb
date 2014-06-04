@@ -1,0 +1,64 @@
+<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">  
+	<div class="container">
+      <!-- Menu button for smallar screens -->
+		<div class="navbar-header">
+		  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+			<span class="sr-only">Mostrar Menu</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <%= link_to "Polla Brasil 2014", current_user, class: 'brasil2014 navbar-brand' %>
+		</div>
+      <!-- Navigation starts -->
+	  <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		  <!-- Links -->
+		  <ul class="nav navbar-nav navbar-right">
+          	<li class="dropdown">            
+            	<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              	  <!-- <img src="/assets/img/user.jpg" alt="" class="nav-user-pic img-responsive" />--> <%= current_user.name%> <b class="caret"></b>              
+            	</a>
+            	<!-- Dropdown menu -->
+            		<ul class="dropdown-menu">
+              			<li><a href=<%="/users/#{current_user.id}"%>><i class="icon-user"></i> Perfil</a></li>
+              			<li><a href=<%=edit_user_path(current_user)%>><i class="icon-cogs"></i> Cambiar su Nombre</a></li>
+              		  	<li><a href="/signout" data-method="delete"><i class="icon-off"></i> Cerrar Sesión</a></li>
+            		</ul>
+          	  </li>          
+       	 </ul>
+        <!-- Notifications -->
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Members button with number of latest members count -->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-user"></i> Usuarios <span   class="badge badge-success"><%= User.where("updated_at > ?", 10.minutes.ago).count %></span>
+              </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-user"></i> Usuarios Conectados</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <% User.all.each do |u| %>
+				  	<li>
+                    	<!-- List item heading h6-->
+                    	<% if u.online? %>
+						<a href="#"><%=u.name%></a> <span class="label label-warning pull-right">Conectado</span>
+                    	<div class="clearfix"></div>
+                    	<hr />
+						<%end%>
+                  	</li>
+				  <%end%>
+                  <li>
+                    <div class="drop-foot">
+                      <%= link_to "Ver Todos", users_path %>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li> 
+
+        </ul>
+	</nav>
+	</div>  
+</div>

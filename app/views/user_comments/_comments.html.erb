@@ -1,0 +1,53 @@
+					 <!-- Widget -->
+	                 <div class="widget worange">
+	                   <!-- Widget title -->
+	                   <div class="widget-head">
+	                     <div class="pull-left">Comentarios Recientes</div>
+	                     <div class="widget-icons pull-right">
+	                       <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+	                       <a href="#" class="wclose"><i class="icon-remove"></i></a>
+	                     </div>
+	                     <div class="clearfix"></div>
+	                   </div>
+
+	                   <div class="widget-content">
+	                     <!-- Widget content -->
+	                     <div class="padd" style="height:450px;overflow:auto;">
+
+	                       <ul class="recent">
+
+							 <% UserComment.all.each do |comm| %>
+	                         <li>
+	                           <div class="recent-content">
+	                             <div class="recent-meta"><%= "Publicado en #{comm.created_at.to_formatted_s(:short)} por #{comm.user.name}" %></div>
+	                             <div class="autoShorten"><%= simple_format(comm.comment)%>
+	                             </div>
+								 <% if current_user == comm.user %>
+	                             <div class="btn-group">
+	                               <a href=<%= edit_user_comment_path(comm)%> data-remote="true" class="btn btn-xs btn-primary"><i class="icon-pencil"></i> </a>
+	                               <a href=<%= user_comment_path(comm) %> data-method="delete" data-remote="true" class="btn btn-xs btn-danger"><i class="icon-remove"></i> </a>
+	                             </div>
+								 <%end%>
+	                             <div class="clearfix"></div>
+	                           </div>
+	                         </li>
+							 <%end%>  
+
+	                       </ul>
+
+	                     </div>
+	                   </div>  
+
+	                     <!-- Widget footer -->
+	                     <div class="widget-foot">
+                    
+	                        <%= form_for UserComment.new, remote: true do |f|%>
+	                          <div class="form-group">
+								<%= f.text_area :comment, class: 'form-control', placeholder: "Escriba un Comentario"%>
+	                          </div>
+	  						<%= f.submit "Enviar", class: 'btn btn-success' %>
+	                        <%end%>
+
+	                     </div>
+
+	                 </div> 

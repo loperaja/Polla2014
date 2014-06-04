@@ -1,0 +1,3 @@
+<% provide(:modal_title, 'Editar Comentario') %>
+$("#modal_holder").html("<%= escape_javascript(render partial: '/shared/modal', locals: {modal_content: '/user_comments/modal_form'})%>");
+$("#myModal").modal('show');

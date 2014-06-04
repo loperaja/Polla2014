@@ -1,0 +1,12 @@
+<%= form_for @user_comment, remote: true do |f| %>
+<div class="modal-body">
+	<div class="form-group">
+	<%= f.label :comment, "Comentario:" %>
+	<%= f.text_area :comment, class: 'form-control', rows: '3' %>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	<%= f.submit "Modificar", class: 'btn btn-primary modal_form_submit' %>
+</div>
+<%end%>

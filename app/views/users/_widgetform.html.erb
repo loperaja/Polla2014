@@ -1,0 +1,41 @@
+ 				<div class="widget-content">
+						<div class="padd">
+							<%= form_for @user, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+ 					    	<% if @user.errors.any? %>
+    						<div id="error_explanation">
+     							<h2><%= pluralize(@user.errors.count, "error") %> errores encontrados:</h2>
+								 <ul>
+      							 <% @user.errors.full_messages.each do |msg| %>
+       								<li><%= msg %></li>
+      						  	 <% end %>
+      							 </ul>
+    						</div>
+  					     	<% end %>
+
+  						 	<div class="form-group">
+    							<%= f.label :name, class: 'col-md-2 control-label' %>
+     							<div class="col-md-8">
+									<%= f.text_field :name, class: 'form-control' %>
+    							</div>
+  						 	</div>
+						 	<div class="form-group">
+   						 		<%= f.label :surname, class: 'col-md-2 control-label' %>
+						 		<div class="col-md-8">
+    								<%= f.text_field :surname, class: 'form-control' %>
+  								</div>
+  				  	 		</div>
+  				 			<div class="form-group">
+    					 		<%= f.label :email, class: 'col-md-2 control-label' %>
+    				 			<div class='col-md-8'>
+								<%= f.text_field :email, class: 'form-control' %>
+  					 			</div>
+  			   		 		</div>
+		   				</div>
+		   			</div>
+		   			<div class="widget-foot">
+						<div class="form-group">
+								<%= f.submit 'Registrarse', class: 'btn btn-success pull-right'%>
+								<div class="clearfix"></div>
+						<% end %>
+						</div>
+		   			</div>

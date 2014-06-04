@@ -1,0 +1,14 @@
+es-CO:
+  activerecord:
+    models:
+      user: Usuario
+    attributes:
+      user:
+        name: "Nombre"
+        surname: "Apellido"
+        password: "Contraseña"
+        email: "Correo"
+      qualifieds:
+        team_id: "Un equipo"
+      final_positions:
+        team_id: "Un equipo"

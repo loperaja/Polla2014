@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'brasil2014';
+	src: url('/assets/ifkgeapagodebold.eot');
+	src: local('☺'), url('/assets/ifkgeapagodebold.woff') format('woff'), url('/assets/ifkgeapagodebold.ttf') format('truetype'), url('/assets/ifkgeapagodebold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,105 @@
+<% provide(:title, current_user.name) %>
+<% provide(:subtitle, 'Tablero de Actividades')%>
+<!-- Matter -->
+<div class="matter">
+	<div class="container">
+
+        <div class="row">
+          <div class="col-md-12"> 
+            <!-- List starts -->
+            <ul class="today-datas">
+				<%= render partial: '/static_pages/today_datas'%>
+            </ul> 
+          </div>
+        </div>		
+		
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="widget wred">
+                <!-- Widget title -->
+                	<div class="widget-head">
+						<div class="pull-left">Sus Pollas</div>
+                  	  	<div class="widget-icons pull-right">
+                    		<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                   	 	</div>
+                  	  	<div class="clearfix"></div>
+                	</div>
+					<div class="widget-content pollas_list">           
+                       		 <%= render partial: '/pollas/pollas_list'%>						
+                  	  <div class="clearfix"></div>  
+                    </div>
+              	</div>
+			
+			</div>
+	 		     
+
+	        </div>
+		
+			
+		<div class="row">
+            <!-- Recent comments widget -->
+            <div class="col-md-6">
+	  		  <div id="user_comments">
+	             <%= render partial: '/user_comments/comments'%>
+			  </div>
+
+	        </div>
+			
+			<!-- Pollas widget -->
+			<div class="col-md-6">
+		 	   <!-- Widget -->
+            	<div class="widget wblue">
+              	  <!-- Widget title -->
+              		<div class="widget-head">
+                		<div class="pull-left">Regalmento e Información</div>
+                		<div class="widget-icons pull-right">
+                  		  <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                	  	</div>
+                		<div class="clearfix"></div>
+              	  	</div>
+              	  	<div class="widget-content">
+                		<!-- Widget content -->
+                		<div class="padd">
+							<p>Haga clic en el botón "Crear" de la sección "Sus Pollas" para nombrar su apuesta (si, tiene que bautizar su polla) y empezar a jugar. Puede crear tantas pollas como su bolsillo aguante (puede también eliminarlas si es del caso). Una vez creada le aparecerá la opción "Editar/Completar" que usted debe seleccionar para modificar o comenzar a hacer sus predicciones. Recuerde: si no termina la suya antes del primer partido del campeonato se queda sin participar.</p>
+							<h6>No olvide que son $100,000 por cada polla. Páguele a cualquiera de los organizadores y haga clic en la opción "Notificar Pago" para borrarlo de la lista de morosos</h6>
+							<h5>Puntuación</h5>
+							<h7>
+								<ul>
+									<li><strong>Partidos de la primera ronda:</strong> 1 punto por acierto</li>
+									<li><strong>Posiciones en los grupos:</strong> 1 punto por acierto</li> 
+									<li><strong>16 Clasificados a octavos:</strong> 2 puntos por acierto</li> 
+									<li><strong>8 Clasificados a cuartos:</strong> 5 puntos por acierto</li> 
+									<li><strong>4 Semifinalistas:</strong> 7 puntos por acierto</li> 
+									<li><strong>Orden definitivo:</strong> 10 puntos por acierto</li>
+								</ul>
+							</h7>
+							<h5>Premios</h5>
+							<p>Por el momento hay <strong><%=User.all.count%></strong> usuarios registrados que han creado <strong><%=Polla.all.count%></strong> pollas
+								recolectando un total de <strong><%= number_to_currency(Polla.all.count*100000)%></strong> a ser repartidos de la siguiente manera:
+								<ul>
+									<li>70% para el ganador (<%= number_to_currency(Polla.all.count*100000*0.7)%>)</li>
+									<li>20% para el segundo (<%= number_to_currency(Polla.all.count*100000*0.2)%>)</li>
+									<li>10% para el tercero (<%= number_to_currency(Polla.all.count*100000*0.1)%>)</li> 
+								</ul>
+								Si hay empate en cualquiera de las posiciones, los premios se repartirán de manera proporcional entre el número de personas empatadas de la siguiente manera:
+								<ul>
+									<li>Si al final hay dos personas empatadas con el mayor número de puntos, se repartirá el 90% de lo recolectado entre ellos (70% del primer premio + 20% del segundo). Quien le siga en puntos se llevaría el 10%.</li>
+								    <li>Si al ganador le siguen dos o más personas con igual número de puntos, se les entregará el 30% de lo recogido en proporciones iguales (20% del segundo premio + 10% del tercero)</li>
+									<li>Si hay dos o más personas con igual número de puntos en la tercera posición, se les entregará el 10% de lo recogido en proporciones iguales.</li> 
+									<li>Si hay tres o más personas empatadas en el primer lugar, se les entregará el 100% del total en partes iguales.</li>
+								</ul>
+								
+							
+                  
+                		</div>
+              	  </div>  
+			  	</div>			
+            </div>
+           
+
+       </div>
+   </div>
+</div>
+		

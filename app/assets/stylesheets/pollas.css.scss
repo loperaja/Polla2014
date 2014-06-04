@@ -1,0 +1,12 @@
+// Place all the styles related to the Pollas controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.loading {
+	float:right; 
+	background:url(/assets/ajax-loader.gif) no-repeat 1px; 
+	height:28px; 
+	width:28px; 
+	margin: 0 auto;
+	display:none;
+}

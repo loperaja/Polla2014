@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h3><small>Ingrese los cuatro mejores equipos</small>
+		<span class="label label-info"><%= number_to_percentage(final_completed(@polla), precision: 2)%> Completado
+		</h3>
+	</div>
+</div>
+<%= form_for @polla, remote: true, html: {class: 'form-horizontal'} do |f| %>
+			<div class="col-md-12">
+				<div class="widget wviolet">       
+					<div class="widget-head">
+		                    <div class="pull-left">Posiciones Finales</div>
+		                    <div class="widget-icons pull-right">
+		                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+		                    </div>
+		                    <div class="clearfix"></div>
+					</div>
+		   			<div class="widget-content">
+		  				<div class="padd">
+							<%= render 'layouts/error_messages', object: f.object %> 								
+								<h4>Puntos por Acierto: 10</h4>
+								<h6><%= "Escoja sus cuatro mejores equipos" %></h6>
+								<hr></hr>
+								<br/>
+								<% Position.all.each do |p| %>								
+								<% @polla.final_positions.where('position_id = ?', p.id).each do |final| %>
+									<%= f.fields_for :final_positions, final do |fin| %>							
+											<div class="form-group">
+												<div class="col-md-2">
+													<%= fin.label :team_id, p.name, class: 'control-label' %>
+												</div>
+												<div class="col-md-2">
+													<%= fin.select :team_id, Team.all.map{|t| [t.name, t.id]}, {include_blank: true}, class: 'col-md-2 form-control' %>
+												</div>
+											</div>
+							
+									<%end%>
+									<%end%>						
+							<%end%>
+						</div>
+					</div>
+				</div>	
+								
+		<div class="well">
+		<%= f.submit 'Enviar Posiciones Finales', class: 'btn btn-primary btn-lg back-to-top'%>
+		
+		</div>
+<%end%>

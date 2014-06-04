@@ -1,0 +1,29 @@
+    <div class="sidebar">
+        <div class="sidebar-dropdown"><a href="#">Navegar</a></div>
+
+        <div class="sidebar-inner">
+          <ul class="navi">
+            <li class="nred"><a href=<%="/users/#{current_user.id}"%>><i class="icon-home"></i> Inicio</a></li>
+
+            <!-- Menu with sub menu -->
+            <li class="has_submenu nlightblue">
+              <a href="#">
+                <!-- Menu name with icon -->
+                <i class="icon-th"></i> Sus Pollas 
+                <!-- Icon for dropdown -->
+                <span class="pull-right"><i class="icon-angle-right"></i></span>
+              </a>
+
+              <ul>
+                <% current_user.try(:pollas).try(:each) do |p| %>
+				<li><%= link_to p.name, p %></li>
+				<%end%>
+              </ul>
+            </li>
+
+            <li class="nviolet"><a href="#"><i class="icon-table"></i> Posiciones y Tablas</a></li>
+
+          </ul>
+        </div>
+
+    </div>

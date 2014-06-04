@@ -1,0 +1,37 @@
+<% provide(:title, 'Lista de Usuarios Registrados') %>
+<div class="matter">
+	<div class="container">
+		<div class="col-md-12">
+			<div class="widget wviolet">       
+				<div class="widget-head">
+	                    <div class="pull-left">Todos los usuarios</div>
+	                    <div class="widget-icons pull-right">
+	                      <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+	                    </div>
+	                    <div class="clearfix"></div>
+				</div>
+	   			<div class="widget-content">
+
+                    <table class="table table-condensed table-striped">
+                      <thead>
+					  <tr class="info">
+					  	<th class="info">Nombre</th>
+						<th>Fecha de Registro</th>
+						<th>Último Ingreso</th>
+					  </tr>					  
+				  </thead>
+				  <tbody>
+					<% @users.all.each do |u| %>					
+					<tr>						
+						<td><%= u.name %></td>
+						<td><%= u.created_at.strftime("%d/%m/%Y") %></td>
+						<td><%= u.updated_at.strftime("%d/%m/%Y")%></td>						
+					</tr>
+					<%end%>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>

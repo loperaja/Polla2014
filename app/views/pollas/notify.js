@@ -1,0 +1,1 @@
+alert("La notificación ha sido enviada con exito al organizador. Favor esperar un tiempo mientras se verifica el pago y se cambia el estado de su polla.");

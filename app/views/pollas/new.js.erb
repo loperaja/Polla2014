@@ -1,0 +1,3 @@
+<% provide(:modal_title, 'Crear Polla Nueva') %>
+$("#modal_holder").html("<%= escape_javascript(render partial: '/shared/modal', locals: {modal_content: '/pollas/new_modal_form'})%>");
+$("#myModal").modal('show');

@@ -1,0 +1,14 @@
+<%= form_for @polla, remote: true, html: {class: "form-horizontal"} do |f| %>
+<div class="modal-body">
+	<div class="form-group">
+			<%= f.label :name, "Título:", class: 'col-md-4 control-label' %>
+		<div class="col-md-8">
+			<%= f.text_field :name, class: 'col-md-8 form-control' %>
+		</div>
+  	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	<%= f.submit "Crear", class: 'btn btn-primary modal_form_submit' %>
+</div>
+<%end%>

@@ -1,0 +1,38 @@
+                        <ul class ="project">
+						<% if current_user.pollas.any?%>
+							<%current_user.pollas.each do |p|%>							
+								<li>
+								<strong><%= p.name%> <%= p.paid? ? "(Pago Recibido)" : "(Pago aun no Recibido/En Proceso)"%></strong>
+								<!-- Progress bar -->
+		                        <div class="progress progress-striped active">
+		 						  <div class="progress-bar progress-bar-info"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <%= number_to_percentage(percentage_completed(p), precision: 2) %>">
+		 						  </div>
+		 					    </div><br/>
+								<div class="file-meta"><strong><%= number_to_percentage(percentage_completed(p), precision: 2) %></strong> Completada - Plazo Máximo: 12/06/2014</div><br/>
+								<div class="btn-groulp">
+							  	  	<%= link_to '<i class="icon-edit"></i> Editar/Completar'.html_safe, edit_polla_path(p), class: 'btn btn-s btn-primary'%>
+									<%= link_to '<i class="icon-pencil"></i> Cambiar Nombre'.html_safe, rename_polla_path(p), remote: true, class: 'btn btn-s btn-primary'%>
+							  		<%=link_to '<i class="icon-list"></i> Ver'.html_safe, p, class: 'btn btn-s btn-primary'  %>
+							  		<%= link_to '<i class="icon-envelope"></i> Notificar Pago'.html_safe, notify_polla_path(p), remote: true, data: {confirm: "Se le enviará la notificación de pago al organizador ¿Está seguro?"}, class: 'btn btn-s btn-primary' %> 
+							  		<%= link_to '<i class="icon-remove"></i> Eliminar'.html_safe, p, method: :delete, remote: true, data: {confirm: "Perderá toda la información ingresada ¿Está seguro?"}, class: 'btn btn-s btn-danger'  %>
+						 	   	</div>
+							</li>						
+							<%end%>
+						<%else%>
+						<p>No se encontró ninguna</p>
+                        <p class="p-meta">
+                          <span>Recuerde comenzar la suya antes del 12 de Junio</span> 
+                        </p>                               
+                        <%end%>
+						
+						<li>
+                  		  	<p>Crear nueva</p>
+                  		  	<p class="p-meta">
+                  				<span>Haga clic en el botón y siga las instrucciones</span> 
+                  	  		</p>
+				  		  	<div class="col-lg-6 col-lg-offset-6">
+				  			  <%=link_to "Crear", new_polla_path, remote: true, class: 'btn btn-info'%>
+				  			</div>
+							<div class="clearfix"></div>
+						</li>
+						</ul>

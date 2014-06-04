@@ -1,0 +1,79 @@
+
+<div class="admin-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Widget starts -->
+            <div class="widget wred">
+              <div class="widget-head">
+                <i class="icon-lock"></i> Registro 
+              </div>
+              <div class="widget-content">
+                <div class="padd">
+                  
+                  <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+			    	<% if @user.errors.any? %>
+					<div id="error_explanation">
+						<h2>Verifique sus datos:</h2>
+						 <ul>
+						 <% @user.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+					  	 <% end %>
+						 </ul>
+					</div>
+			     	<% end %>
+					<!-- Registration form starts -->
+                                      <!-- Name -->
+                                          <div class="form-group">
+                                            <%= f.label :name, "Nombre o Alias", class: "control-label col-lg-3" %>
+											<div class="col-lg-9">
+                                              <%= f.text_field :name, class: "form-control" %>
+                                            </div>
+                                          </div>   
+                                          <!-- Email -->
+                                          <div class="form-group">
+                                            <%= f.label :email, "E-Mail", class: "control-label col-lg-3" %>
+                                            <div class="col-lg-9">
+                                              <%= f.text_field :email, class: "form-control" %>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <%= f.label :email_confirmation, "Confirme E-Mail", class: "control-label col-lg-3" %>
+                                            <div class="col-lg-9">
+                                              <%= f.text_field :email_confirmation, class: "form-control" %>
+                                            </div>
+                                          </div>                                                               
+                                          <!-- Password -->
+                                          <div class="form-group">
+                                            <%= f.label :password, "Contraseña", class: "control-label col-lg-3"%>
+                                            <div class="col-lg-9">
+                                              <%= f.password_field :password, class: "form-control" %>
+                                            </div>
+                                          </div>
+                                          <!-- Password Confirmation -->
+                                          <div class="form-group">
+                                            <%= f.label :password_confirmation, "Confirmar Contraseña", class: "control-label col-lg-3"%>
+                                            <div class="col-lg-9">
+                                              <%= f.password_field :password_confirmation, class: "form-control" %>
+                                            </div>
+                                          </div>
+                                           <div class="form-group">
+                                            <div class="col-lg-9 col-lg-offset-3">
+						                       <br />
+                                              <%= f.submit "Registrarse", class: "btn btn-danger"%>
+                                              <button type="reset" class="btn btn-success">Limpiar Campos</button>
+                                            </div>
+                                          </div>
+										  <br />
+                  <%end%>
+
+                </div>
+              </div>
+                <div class="widget-foot">
+                  ¿Ya esta registrado? <a href="/">Ingresar</a>
+                </div>
+            </div>  
+      </div>
+    </div>
+  </div> 
+</div>

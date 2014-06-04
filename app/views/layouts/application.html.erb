@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Polla Brasil 2014</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+  <script src="/assets/html5shim.js"></script>
+  <![endif]-->
+</head>
+<body>
+<%= render 'layouts/navbar'%>
+<div class="content">
+	<%= render 'layouts/sidebar'%>
+	<div class="mainbar">
+		<div class="page-head"> 
+			<h2 class="pull-left"><%= yield(:title)%>
+				<span class="page-meta"><%=yield(:subtitle)%></span>
+			</h2>
+		<div class="bread-crumb pull-right">
+          <%= link_to "<i class='icon-home'></i> Inicio".html_safe, current_user %>
+          <!-- Divider -->
+          <span class="divider">/</span> 
+          <a href="#" class="bread-current"><%= yield(:title)%></a>
+        </div>
+		<div class="clearfix"></div>
+		</div>
+		
+		<div id="elFlash">
+			<%= render partial: '/shared/flash_msg' %>
+		</div>
+		<div class="loading"></div>
+		<!-- Page heading ends -->
+		<%= yield %>
+	</div>
+</div>
+<div id="modal_holder"></div>
+<%= debug(params) if Rails.env.development? %>
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+<div class="clearfix"></div>
+</body>
+</html>

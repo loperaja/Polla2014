@@ -1,0 +1,20 @@
+defaults: &defaults
+  db_password: password_here
+  mail_address: hostname_here
+  mail_username: mail_username_here
+  mail_password: mail_password_here
+
+development:
+  <<: *defaults
+  db_user: development_db_username_here
+  database: develpoment_db_name_here
+
+test:
+  <<: *defaults
+  db_user: db_test_username_here
+  database: test_db_name_here
+
+production:
+  <<: *defaults
+  db_user: production_db_username_here
+  database: production_db_name_here

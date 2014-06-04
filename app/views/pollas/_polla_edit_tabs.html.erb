@@ -1,0 +1,16 @@
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#partidos_polla" data-toggle="tab">Partidos</a>
+			</li>
+  			<li><a href="#profile" data-toggle="tab">Posiciones en Grupos</a></li>
+  	  		<li><a href="#rondas" data-toggle="tab">Octavos/Cuartos/Semifinal</a></li>
+  		  	<li><a href="#posiciones" data-toggle="tab">Posiciones Finales</a></li>
+		</ul>
+<!-- Tab panes -->
+		<div class="tab-content">
+  		  	<div class="tab-pane fade in active" id="partidos_polla"><%= render partial: 'match_results'%></div>
+  			<div class="tab-pane fade" id="profile"><%= render partial: 'group_positions'%></div>
+  		  	<div class="tab-pane fade" id="rondas"><%= render partial: 'second_quarters'%></div>
+  		  	<div class="tab-pane fade" id="posiciones"><%= render partial: 'final_positions'%></div>
+		</div>
