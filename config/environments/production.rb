@@ -1,4 +1,5 @@
 Polla2014::Application.configure do
+  CONFIG = YAML.load_file("#{Rails.root.to_s}/config/config.yml")[Rails.env]
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
