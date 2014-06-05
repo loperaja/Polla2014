@@ -24,16 +24,16 @@ jQuery.fn.autoShorten = ->
   @each ->
     if $(this).text().length > 100
       words = $(this).text().substring(0, 100).split(" ")
-      shortText = words.slice(0, words.length - 1).join(" ") + " ..."
-      $(this).data("replacementText", $(this).text()).text(shortText).css(cursor: "pointer").hover(->
+      shortText = words.slice(0, words.length - 1).join(" ") + " <strong>ver mas</strong>"
+      $(this).data("replacementText", $(this).text()).html(shortText).css(cursor: "pointer").hover(->
         $(this).css color: "#333"
         return
       , ->
         $(this).css color: "#666"
         return
       ).click ->
-        tempText = $(this).text()
-        $(this).text $(this).data("replacementText")
+        tempText = $(this).html()
+        $(this).html $(this).data("replacementText")
         $(this).data "replacementText", tempText
         return
 
