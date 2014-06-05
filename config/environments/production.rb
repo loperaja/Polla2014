@@ -1,5 +1,5 @@
 Polla2014::Application.configure do
-  
+  CONFIG = YAML.load_file("#{Rails.root.to_s}/config/config.yml")[Rails.env]  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -32,7 +32,7 @@ Polla2014::Application.configure do
 
   # Generate digests for assets URLs.
   config.assets.digest = true
-  CONFIG = YAML.load_file("#{Rails.root.to_s}/config/config.yml")[Rails.env]
+
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
