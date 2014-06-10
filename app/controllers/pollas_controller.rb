@@ -9,6 +9,10 @@ class PollasController < ApplicationController
   def show
   end
   
+  def index
+    @pollas = Polla.all
+  end
+  
   def new
     @polla = Polla.new
     respond_to do |format|
