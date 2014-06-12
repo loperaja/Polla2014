@@ -11,7 +11,7 @@
                 <!-- Graph -->
                 <div class="pull-left"><i class="icon-list"></i></div>
                 <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%=Polla.all.count%></span> Pollas Creadas</div>
+                <div class="datas-text pull-right"><span class="bold"><%=Polla.where(real: nil).count%></span> Pollas Creadas</div>
 
                 <div class="clearfix"></div>
               </li>
@@ -20,7 +20,7 @@
                 <!-- Graph -->
                 <div class="pull-left"><i class="icon-gift"></i></div>
                 <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%= number_to_currency(Polla.all.count*100000)%></span> En Premios</div>
+                <div class="datas-text pull-right"><span class="bold"><%= number_to_currency(Polla.where(real: nil).count*100000)%></span> En Premios</div>
 
                 <div class="clearfix"></div>
               </li>
@@ -28,7 +28,7 @@
                 <!-- Graph -->
                 <div class="pull-left"><i class="icon-calendar"></i></div>
                 <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%= (Date.new(2014,06,12) - Date.today).to_i%></span> Días para el mundal </div>
+                <div class="datas-text pull-right"><span class="bold">HOY</span> Empieza el mundial! </div>
 
                 <div class="clearfix"></div>
               </li> 

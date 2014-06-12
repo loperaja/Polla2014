@@ -76,12 +76,12 @@
 								</ul>
 							</h7>
 							<h5>Premios</h5>
-							<p>Por el momento hay <strong><%=User.all.count%></strong> usuarios registrados que han creado <strong><%=Polla.all.count%></strong> pollas
-								recolectando un total de <strong><%= number_to_currency(Polla.all.count*100000)%></strong> a ser repartidos de la siguiente manera:
+							<p>Por el momento hay <strong><%=User.all.count%></strong> usuarios registrados que han creado <strong><%=Polla.where(real: nil).count%></strong> pollas
+								recolectando un total de <strong><%= number_to_currency(Polla.where(real: nil).count*100000)%></strong> a ser repartidos de la siguiente manera:
 								<ul>
-									<li>70% para el ganador (<%= number_to_currency(Polla.all.count*100000*0.7)%>)</li>
-									<li>20% para el segundo (<%= number_to_currency(Polla.all.count*100000*0.2)%>)</li>
-									<li>10% para el tercero (<%= number_to_currency(Polla.all.count*100000*0.1)%>)</li> 
+									<li>70% para el ganador (<%= number_to_currency(Polla.where(real: nil).count*100000*0.7)%>)</li>
+									<li>20% para el segundo (<%= number_to_currency(Polla.where(real: nil).count*100000*0.2)%>)</li>
+									<li>10% para el tercero (<%= number_to_currency(Polla.where(real: nil).count*100000*0.1)%>)</li> 
 								</ul>
 								Si hay empate en cualquiera de las posiciones, los premios se repartirán de manera proporcional entre el número de personas empatadas de la siguiente manera:
 								<ul>

@@ -4,6 +4,8 @@ class Qualified < ActiveRecord::Base
   belongs_to :round
   belongs_to :team
   
+  has_many :point_histories, dependent: :destroy 
+  
   validates :team_id, uniqueness: {scope: [:round_id, :polla_id], message: "no puede clasificar más de una vez a alguna ronda"}, on: :update
   
   default_scope order('id ASC')

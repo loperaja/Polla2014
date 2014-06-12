@@ -20,7 +20,7 @@
 	                         <li>
 	                           <div class="recent-content">
 	                             <div class="recent-meta"><%= "Publicado en #{comm.created_at.to_formatted_s(:short)} por #{comm.user.name}" %></div>
-	                             <div class="autoShorten"><%= simple_format(comm.comment)%>
+	                             <div><%= simple_format(comm.comment)%>
 	                             </div>
 								 <% if current_user == comm.user %>
 	                             <div class="btn-group">

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  polla_id: 1
+  points: 1
+  match_id: 1
+  group_position_id: 1
+  round_id: 1
+  final_position_id: 1
+
+two:
+  polla_id: 1
+  points: 1
+  match_id: 1
+  group_position_id: 1
+  round_id: 1
+  final_position_id: 1

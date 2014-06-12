@@ -1,9 +1,10 @@
 class PollasController < ApplicationController
   include PollasHelper
   respond_to :html, :js
-  before_action :set_polla, only: [:show, :edit, :rename, :update, :destroy, :can_modify]
+  before_action :set_polla, only: [:show, :edit, :rename, :update, :destroy, :can_modify, :modification_allowed]
   before_action :row_ids, only: [:edit, :update]
   before_filter :can_access, only: [:edit, :update, :show]
+  before_filter :modification_allowed, only: [:edit, :update, :destroy]
   
   
   def show
@@ -68,6 +69,13 @@ class PollasController < ApplicationController
                                   :group_positions_attributes => [:id, :team_id, :position_id],
                                   :qualifieds_attributes => [:id, :team_id],
                                   :final_positions_attributes => [:id, :team_id])
+  end
+  
+  def modification_allowed
+    if Time.now > Time.new(2014, 06, 12, 21, 0, 0) && !@polla.real? 
+      redirect_to root_path 
+      flash[:warning] = "El mundial ya empezó!!"
+    end
   end
   
   def can_access

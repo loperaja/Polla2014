@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  polla_id: 1
+  ponts: 1
+
+two:
+  polla_id: 1
+  ponts: 1

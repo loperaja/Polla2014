@@ -10,14 +10,18 @@
 		 					    </div><br/>
 								<div class="file-meta"><strong><%= number_to_percentage(percentage_completed(p), precision: 2) %></strong> Completada - Plazo Máximo: 12/06/2014</div><br/>
 								<div class="btn-groulp">
-							  	  	<%= link_to '<i class="icon-edit"></i> Editar/Completar'.html_safe, edit_polla_path(p), class: 'btn btn-s btn-primary'%>
+							  	<% unless Time.now > Time.new(2014, 06, 12, 21, 0, 0) %>  	
+									<%= link_to '<i class="icon-edit"></i> Editar/Completar'.html_safe, edit_polla_path(p), class: 'btn btn-s btn-primary'%>
 									<%= link_to '<i class="icon-pencil"></i> Cambiar Nombre'.html_safe, rename_polla_path(p), remote: true, class: 'btn btn-s btn-primary'%>
-							  		<%=link_to '<i class="icon-list"></i> Ver'.html_safe, p, class: 'btn btn-s btn-primary'  %>
-							  		<% if !p.paid? %>
+							  	<%end%>
+									<%=link_to '<i class="icon-list"></i> Ver'.html_safe, p, class: 'btn btn-s btn-primary'  %>
+							  	<% unless Time.now > Time.new(2014, 06, 12, 21, 0, 0) %> 
+									<% if !p.paid? %>
 									<%= link_to '<i class="icon-envelope"></i> Notificar Pago'.html_safe, notify_polla_path(p), remote: true, data: {confirm: "Se le enviará la notificación de pago al organizador ¿Está seguro?"}, class: 'btn btn-s btn-primary' %>
 									<%end%>
 							  		<%= link_to '<i class="icon-remove"></i> Eliminar'.html_safe, p, method: :delete, remote: true, data: {confirm: "Perderá toda la información ingresada ¿Está seguro?"}, class: 'btn btn-s btn-danger'  %>
-						 	   	</div>
+						 	   	<%end%>
+								</div>
 							</li>						
 							<%end%>
 						<%else%>
@@ -26,7 +30,7 @@
                           <span>Recuerde comenzar la suya antes del 12 de Junio</span> 
                         </p>                               
                         <%end%>
-						
+						<% unless Time.now > Time.new(2014, 06, 12, 21, 0, 0) %> 
 						<li>
                   		  	<p>Crear nueva</p>
                   		  	<p class="p-meta">
@@ -37,4 +41,5 @@
 				  			</div>
 							<div class="clearfix"></div>
 						</li>
+						<%end%>
 						</ul>

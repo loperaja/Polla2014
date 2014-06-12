@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610082141) do
+ActiveRecord::Schema.define(version: 20140612103908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,12 +65,40 @@ ActiveRecord::Schema.define(version: 20140610082141) do
     t.integer  "group_id"
   end
 
+  create_table "point_histories", force: true do |t|
+    t.integer  "polla_id"
+    t.integer  "points"
+    t.integer  "match_id"
+    t.integer  "group_position_id"
+    t.integer  "round_id"
+    t.integer  "final_position_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "qualified_id"
+  end
+
+  add_index "point_histories", ["final_position_id"], name: "index_point_histories_on_final_position_id", using: :btree
+  add_index "point_histories", ["group_position_id"], name: "index_point_histories_on_group_position_id", using: :btree
+  add_index "point_histories", ["match_id"], name: "index_point_histories_on_match_id", using: :btree
+  add_index "point_histories", ["polla_id"], name: "index_point_histories_on_polla_id", using: :btree
+  add_index "point_histories", ["round_id"], name: "index_point_histories_on_round_id", using: :btree
+
+  create_table "points", force: true do |t|
+    t.integer  "polla_id"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "points", ["polla_id"], name: "index_points_on_polla_id", using: :btree
+
   create_table "pollas", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "real"
   end
 
   add_index "pollas", ["user_id"], name: "index_pollas_on_user_id", using: :btree
