@@ -60,24 +60,22 @@
     <% @pollas.each do |polla| %>
       <Row>
 	  	<Cell><Data ss:Type="String"><%= polla.try(:name) %></Data></Cell>
-	  <%polla.match_results.each do |r|%>
-        <Cell><Data ss:Type="String"><%= r.try(:team).blank? ? r.try(:team).try(:shortname) : 'e' %></Data></Cell>
-      <%end%>
+	  <%Match.all.each do |m| %>
+	  	<%polla.match_results.where(match_id: m.id).each do |r|%>
+        	<Cell><Data ss:Type="String"><%= r.try(:team).blank? ? 'e' : r.try(:team).try(:shortname)%></Data></Cell>
+      	<%end%>
+	  <%end%>
 	  <% Group.all.each do |g| %>
 	  	<%Position.all.each do |p|%>
-	  		<%polla.group_positions.where('group_id = ? AND position_id = ?', g.id, p.id) do |p| %>
+	  		<%polla.group_positions.where('group_id = ? AND position_id = ?', g.id, p.id).each do |p| %>
 				<Cell><Data ss:Type="String"><%= p.try(:team).try(:shortname) %></Data></Cell>
 			<%end%>
 	  	<%end%>
 	  <%end%>
-	  <%polla.qualifieds.where(round_id: 1).each do |q| %>
-	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
-	  <%end%>
-	  <%polla.qualifieds.where(round_id: 2).each do |q| %>
-	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
-	  <%end%>
-	  <%polla.qualifieds.where(round_id: 3).each do |q| %>
-	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
+	  <% Round.all.each do |r| %>
+	  	<%polla.qualifieds.where(round_id: r.id).each do |q| %>
+	  		<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
+	  	<%end%>
 	  <%end%>
 	  <% Position.all.each do |p| %>
 	  	<%polla.final_positions.where(position_id: p.id).each do |f| %>

@@ -1,8 +1,12 @@
 <% provide(:title, "Todas Las Pollas") %>
 <% provide(:subtitle, 'Resultados Ingresados')%>
 <div class="matter">
-	<%= link_to "Excel", pollas_path(format: "xls") %>
 	<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+		<%= link_to "Exportar a Excel", pollas_path(format: "xls"), class: 'btn btn-info' %>
+		</div>
+	</div>
 		<%= render partial: 'mostrar_pollas'%>
 	</div>
 </div>
