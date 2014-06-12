@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12220</WindowHeight>
+  <WindowWidth>21080</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>140</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+</ExcelWorkbook>
+<Styles>
+	<Style ss:ID="Default" ss:Name="Normal">
+		<Alignment ss:Vertical="Bottom"/>
+		<Borders/>
+		<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+		<Interior/>
+		<NumberFormat/>
+		<Protection/>
+	</Style>
+	<Style ss:ID="s63">
+		<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#FFFFFF"/>
+		<Interior ss:Color="#000000" ss:Pattern="Solid"/>
+	</Style>
+</Styles>
+  <Worksheet ss:Name="Sheet1">
+  <Table>
+   <Column ss:AutoFitWidth="0" ss:Width="188"/>
+   <Column ss:AutoFitWidth="0" ss:Width="107"/>
+   <Column ss:AutoFitWidth="0" ss:Width="187"/>
+   <Column ss:AutoFitWidth="0" ss:Width="187"/>
+   <Column ss:AutoFitWidth="0" ss:Width="146"/>
+   <Column ss:AutoFitWidth="0" ss:Width="163"/>
+      <Row>
+        <Cell ss:StyleID="s63"><Data ss:Type="String">Nombre</Data></Cell>
+      <% Match.all.each do |m| %>
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= m.teams.collect(&:shortname).join(" vs ")%></Data></Cell>
+	  <%end%>
+	  <% Group.all.each do |g| %>
+        <%(1..4).map{|i| i}.each do |n|%> 
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= "#{g.name}#{n}"%></Data></Cell>
+		<%end%>
+      <%end%>
+	  <%(1..16).map{|i| i}.each do |n|%> 
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= "of#{n}"%></Data></Cell>
+      <%end%>
+	  <%(1..8).map{|i| i}.each do |n|%>
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= "qf#{n}"%></Data></Cell>
+      <%end%>
+	  <%(1..4).map{|i| i}.each do |n|%>
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= "sf#{n}"%></Data></Cell>
+      <%end%>
+	  <% Position.all.each do |p| %>
+		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= p.name%></Data></Cell>
+      <%end%>
+      </Row>
+    <% @pollas.each do |polla| %>
+      <Row>
+	  	<Cell><Data ss:Type="String"><%= polla.try(:name) %></Data></Cell>
+	  <%polla.match_results.each do |r|%>
+        <Cell><Data ss:Type="String"><%= r.try(:team).blank? ? r.try(:team).try(:shortname) : 'e' %></Data></Cell>
+      <%end%>
+	  <% Group.all.each do |g| %>
+	  	<%Position.all.each do |p|%>
+	  		<%polla.group_positions.where('group_id = ? AND position_id = ?', g.id, p.id) do |p| %>
+				<Cell><Data ss:Type="String"><%= p.try(:team).try(:shortname) %></Data></Cell>
+			<%end%>
+	  	<%end%>
+	  <%end%>
+	  <%polla.qualifieds.where(round_id: 1).each do |q| %>
+	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
+	  <%end%>
+	  <%polla.qualifieds.where(round_id: 2).each do |q| %>
+	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
+	  <%end%>
+	  <%polla.qualifieds.where(round_id: 3).each do |q| %>
+	  	<Cell><Data ss:Type="String"><%= q.try(:team).try(:shortname) %></Data></Cell>
+	  <%end%>
+	  <% Position.all.each do |p| %>
+	  	<%polla.final_positions.where(position_id: p.id).each do |f| %>
+	  		<Cell><Data ss:Type="String"><%= f.try(:team).try(:shortname) %></Data></Cell>
+		<%end%>
+	  <%end%>        
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

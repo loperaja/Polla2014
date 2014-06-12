@@ -11,7 +11,12 @@ class PollasController < ApplicationController
   end
   
   def index
-    @pollas = Polla.all
+    @pollas = Polla.where(real: nil)
+    respond_to do |format|
+      format.html
+      format.xls
+      format.js
+    end
   end
   
   def new
@@ -72,7 +77,7 @@ class PollasController < ApplicationController
   end
   
   def modification_allowed
-    if Time.now > Time.new(2014, 06, 12, 21, 0, 0) && !@polla.real? 
+    if Time.now > Time.new(2014, 06, 12, 21, 45, 0) && !@polla.real? 
       redirect_to root_path 
       flash[:warning] = "El mundial ya empezó!!"
     end
