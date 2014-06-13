@@ -31,6 +31,7 @@
    <Column ss:AutoFitWidth="0" ss:Width="188"/>
       <Row>
         <Cell ss:StyleID="s63"><Data ss:Type="String">Nombre</Data></Cell>
+		<Cell ss:StyleID="s63"><Data ss:Type="String">Puntaje</Data></Cell>
       <% Match.all.each do |m| %>
 		<Cell ss:StyleID="s63"><Data ss:Type="String"><%= m.teams.collect(&:shortname).join(" vs ")%></Data></Cell>
 	  <%end%>
@@ -55,6 +56,7 @@
     <% @pollas.each do |polla| %>
       <Row>
 	  	<Cell><Data ss:Type="String"><%= polla.try(:name) %></Data></Cell>
+		<Cell><Data ss:Type="String"><%= polla.points.first.points %></Data></Cell>		
 	  <%Match.all.each do |m| %>
 	  	<%polla.match_results.where(match_id: m.id).each do |r|%>
         	<Cell><Data ss:Type="String"><%= r.try(:team).blank? ? 'e' : r.try(:team).try(:shortname)%></Data></Cell>

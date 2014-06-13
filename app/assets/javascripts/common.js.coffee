@@ -1,6 +1,9 @@
 $(document).ready ->
 	$(".autoShorten").autoShorten()
 
+$(document).on 'page:fetch', ->
+	$(".loading").show()
+
 $(document).on 'click', '.modal_form_submit', ->
 	$('#myModal').modal('hide')
 
