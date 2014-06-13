@@ -8,7 +8,7 @@ class Polla < ActiveRecord::Base
   has_many :qualifieds, dependent: :destroy
   has_many :positions, through: :final_positions
   has_many :final_positions, dependent: :destroy
-  has_many :points, dependent: :destroy
+
   has_many :point_histories, dependent: :destroy  
   
   after_create :build_polla
@@ -81,10 +81,8 @@ class Polla < ActiveRecord::Base
   end
   
   def sum_points(polla, scored)
-    Point.create!(polla_id: polla.id) unless Point.where(polla_id: polla.id).any?
-    polla_points = Point.where(polla_id: polla.id).first 
-    current_score = polla_points.points.nil? ? 0 : polla_points.points
-    polla_points.update_attributes(points: current_score + scored)
+    current_score = polla.points.nil? ? 0 : polla.points
+    polla.update_attributes(points: current_score + scored)
     @new_score = current_score + scored
   end
     

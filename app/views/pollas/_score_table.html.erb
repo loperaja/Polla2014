@@ -17,9 +17,9 @@
 						  </tr>
 					  </thead>
 					  <tbody>
-							<% Point.order(points: :desc).each do |p| %>
+							<% @pollas_score.each do |p| %>
 							<tr>
-								<td class="bold"><%= p.polla.name%></td>
+								<td class="bold"><%= p.name%></td>
 								<td><%= p.points.nil? ? 0 : p.points %></td>
 							</tr>
 							<%end%>													

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @pollas_score = Polla.where(real: nil).order(points: :desc)
   end
 
   # GET /users/new

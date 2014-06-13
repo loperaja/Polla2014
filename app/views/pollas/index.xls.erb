@@ -56,7 +56,7 @@
     <% @pollas.each do |polla| %>
       <Row>
 	  	<Cell><Data ss:Type="String"><%= polla.try(:name) %></Data></Cell>
-		<Cell><Data ss:Type="String"><%= polla.points.first.points %></Data></Cell>		
+		<Cell><Data ss:Type="String"><%= polla.points %></Data></Cell>		
 	  <%Match.all.each do |m| %>
 	  	<%polla.match_results.where(match_id: m.id).each do |r|%>
         	<Cell><Data ss:Type="String"><%= r.try(:team).blank? ? 'e' : r.try(:team).try(:shortname)%></Data></Cell>

@@ -11,7 +11,7 @@ class PollasController < ApplicationController
   end
   
   def index
-    @pollas = Polla.where(real: nil)
+    @pollas = Polla.where(real: nil).order(points: :desc)
     respond_to do |format|
       format.html
       format.xls

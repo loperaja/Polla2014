@@ -10,7 +10,7 @@
 		 					    </div><br/>
 								<div class="file-meta"><strong><%= number_to_percentage(percentage_completed(p), precision: 2) %></strong> Completada - Plazo Máximo: 12/06/2014</div><br/>
 								<div class="btn-groulp">
-							  	<% unless Time.now > Time.new(2014, 06, 12, 21, 45, 0) %>  	
+							  	<% unless Time.now > Time.new(2014, 06, 12, 21, 45, 0) && !p.real?%>  	
 									<%= link_to '<i class="icon-edit"></i> Editar/Completar'.html_safe, edit_polla_path(p), class: 'btn btn-s btn-primary'%>
 									<%= link_to '<i class="icon-pencil"></i> Cambiar Nombre'.html_safe, rename_polla_path(p), remote: true, class: 'btn btn-s btn-primary'%>
 							  	<%end%>
