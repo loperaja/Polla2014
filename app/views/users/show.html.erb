@@ -29,12 +29,13 @@
 					<div class="widget-content pollas_list">           
                        		 <%= render partial: '/pollas/pollas_list'%>						
                   	  <div class="clearfix"></div>  
-                    </div>
+                    <div id="comentarios_puntajes"></div>
+					</div>
               	</div>
-			
+				
 			</div>
 	 		     
-
+			
 	        </div>
 		
 			
@@ -66,7 +67,7 @@
 							<p>Haga clic en el botón "Crear" de la sección "Sus Pollas" para nombrar su apuesta (si, tiene que bautizar su polla) y empezar a jugar. Puede crear tantas pollas como su bolsillo aguante (puede también eliminarlas si es del caso). Una vez creada le aparecerá la opción "Editar/Completar" que usted debe seleccionar para modificar o comenzar a hacer sus predicciones. Recuerde: si no termina la suya antes del primer partido del campeonato se queda sin participar.</p>
 							<h6>No olvide que son $100,000 por cada polla. Páguele a cualquiera de los organizadores y haga clic en la opción "Notificar Pago" para borrarlo de la lista de morosos</h6>
 							<h5>Puntuación</h5>
-							<h7>
+							<h7 id="puntos_premios">
 								<ul>
 									<li><strong>Partidos de la primera ronda:</strong> 1 punto por acierto</li>
 									<li><strong>Posiciones en los grupos:</strong> 1 punto por acierto</li> 
@@ -77,7 +78,7 @@
 								</ul>
 							</h7>
 							<h5>Premios</h5>
-							<p>Por el momento hay <strong><%=User.all.count%></strong> usuarios registrados que han creado <strong><%=Polla.where(real: nil).count%></strong> pollas
+							<p><strong><%=User.all.count%></strong> usuarios registrados crearon <strong><%=Polla.where(real: nil).count%></strong> pollas
 								recolectando un total de <strong><%= number_to_currency(Polla.where(real: nil).count*100000)%></strong> a ser repartidos de la siguiente manera:
 								<ul>
 									<li>70% para el ganador (<%= number_to_currency(Polla.where(real: nil).count*100000*0.7)%>)</li>

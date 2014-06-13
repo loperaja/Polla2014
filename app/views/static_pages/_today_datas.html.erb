@@ -1,26 +1,28 @@
-              <li class="bgreen">
+              <a href='#comentarios_puntajes'><li class="bgreen">
                 <!-- Graph -->
                 <div class="pull-left"><i class="icon-group"></i></div>
                 <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%=User.all.count%></span> Usuarios Registrados</div>
+                <div class="datas-text pull-right"><span class="bold">Participantes</span>Comentarios y Puntaje</div>
 
                 <div class="clearfix"></div>
-              </li>
+              </li></a>
 
               <%= link_to"<li class='blightblue'>
-                <div class='pull-left'><i class='icon-eye-open'></i></div>
-                <div class='datas-text pull-right'><span class='bold'>Ver</span>Todas las Pollas </div>
+                <div class='pull-left'><i class='icon-list'></i></div>
+                <div class='datas-text pull-right'><span class='bold'>Pollas</span>Ver Todas </div>
                 <div class='clearfix'></div>
               </li>".html_safe, pollas_path%>
-
+			  
+			  <a href="#puntos_premios">
               <li class="bviolet">
                 <!-- Graph -->
                 <div class="pull-left"><i class="icon-gift"></i></div>
                 <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%= number_to_currency(Polla.where(real: nil).count*100000)%></span> En Premios</div>
+                <div class="datas-text pull-right"><span class="bold"><%= number_to_currency(Polla.where(real: nil).count*100000)%></span> Ver Lista de Premios</div>
 
                 <div class="clearfix"></div>
               </li>
+		  </a>
               <%= link_to"<li class='bblue'>
                 <div class='pull-left'><i class='icon-file'></i></div>
                 <div class='datas-text pull-right'><span class='bold'>Descargar</span>Archivo Consolidado </div>
