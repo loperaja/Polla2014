@@ -7,14 +7,11 @@
                 <div class="clearfix"></div>
               </li>
 
-              <li class="blightblue">
-                <!-- Graph -->
-                <div class="pull-left"><i class="icon-list"></i></div>
-                <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold"><%=Polla.where(real: nil).count%></span> Pollas Creadas</div>
-
-                <div class="clearfix"></div>
-              </li>
+              <%= link_to"<li class='blightblue'>
+                <div class='pull-left'><i class='icon-eye-open'></i></div>
+                <div class='datas-text pull-right'><span class='bold'>Ver</span>Todas las Pollas </div>
+                <div class='clearfix'></div>
+              </li>".html_safe, pollas_path%>
 
               <li class="bviolet">
                 <!-- Graph -->
@@ -24,11 +21,8 @@
 
                 <div class="clearfix"></div>
               </li>
-              <li class="bblue">
-                <!-- Graph -->
-                <div class="pull-left"><i class="icon-calendar"></i></div>
-                <!-- Text -->
-                <div class="datas-text pull-right"><span class="bold">HOY</span> Empieza el mundial! </div>
-
-                <div class="clearfix"></div>
-              </li> 
+              <%= link_to"<li class='bblue'>
+                <div class='pull-left'><i class='icon-file'></i></div>
+                <div class='datas-text pull-right'><span class='bold'>Descargar</span>Archivo Consolidado </div>
+                <div class='clearfix'></div>
+              </li>".html_safe,pollas_path(format: "xls")%> 
